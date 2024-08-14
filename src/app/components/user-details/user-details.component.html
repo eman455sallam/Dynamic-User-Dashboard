@@ -1,0 +1,18 @@
+
+<div class="userDetails"  *ngIf="!isLoading">
+  <mat-card *ngIf="user" @fadeIn>
+
+    <img mat-card-image [src]="user.avatar" alt="{{ user.first_name }}">
+    <mat-card-content>
+      <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+
+      <p>Email: {{ user.email }}</p>
+      <a routerLink=""  >Back</a>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+<div *ngIf="isLoading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+

@@ -1,0 +1,31 @@
+<div class="user-list"  *ngIf="!isLoading" class="user-list">
+<ng-container *ngIf="users.length > 0; else noUsers">
+<mat-card *ngFor="let user of users" @fadeIn [routerLink]="['/user', user.id]" class="example-card" appearance="outlined">
+
+  <img mat-card-image [src]="user.avatar" alt="{{user.first_name}}">
+
+  <mat-card-content class="center-content" >
+    <h3>{{user.first_name}} {{user.last_name}}</h3>
+
+  </mat-card-content>
+  <mat-card-actions class="center-content">
+    <button  class="details" [routerLink]="['/user', user.id]">view details</button>
+  </mat-card-actions>
+</mat-card>
+</ng-container>
+</div>
+
+
+<ng-template #noUsers>
+  <p>No users available</p>
+</ng-template>
+
+<div class="pagination">
+  <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+</div>
+
+<div *ngIf="isLoading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
